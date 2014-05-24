@@ -1,2 +1,12 @@
 # Compiled
 *.elc
+.cask/
+.python-environments/
+backups/
+places
+eshell
+elpa
+auto-save-list
+ac-comphist.dat
+.smex-items
+
