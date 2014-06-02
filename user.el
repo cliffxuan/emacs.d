@@ -64,7 +64,7 @@
   "k" 'kill-buffer
   "l" 'flycheck-list-errors
   "o" 'delete-other-windows
-  "q" 'delete-window
+  "h" 'delete-window  ;; hide window
   "s" 'evil-window-split
   "v" 'evil-window-vsplit
   "w" 'delete-trailing-whitespace
