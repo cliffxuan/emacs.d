@@ -123,6 +123,10 @@
 ;; No unnecessary whitespaces
 (require 'ethan-wspace)
 (global-ethan-wspace-mode 1)
+;; make it happy
+(setq require-final-newline nil)
+(setq mode-require-final-newline nil)
+
 
 ;; Indicates the 79th column for python
 (require 'fill-column-indicator)
