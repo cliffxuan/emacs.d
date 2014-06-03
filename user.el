@@ -13,7 +13,9 @@
 (require 'pallet)
 
 ;; Show line number
+(require 'linum)
 (global-linum-mode t)
+(setq linum-format "%3d")
 
 (setq case-replace nil)
 (setq case-fold-search nil)
