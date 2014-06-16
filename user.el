@@ -20,6 +20,9 @@
 (setq case-replace nil)
 (setq case-fold-search nil)
 
+;; Hightlight line
+(global-hl-line-mode 1)
+
 ;; Evil mode
 (require 'evil)
 (evil-mode 1)
@@ -89,7 +92,7 @@
 
 
 ;; Show keystrokes
-(setq echo-keystrokes 0.02)
+;;(setq echo-keystrokes 0.02)
 
 ;; Enable Flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
@@ -168,6 +171,12 @@
 
 ;; create the autosave dir if necessary, since emacs won't.
 (make-directory "~/.emacs.d/autosaves/" t)
+
+;; disable automatic line break in html mode
+(add-hook 'html-mode-hook 'turn-off-auto-fill)
+(add-hook 'html-model-hook
+          (function (lambda ()
+                      (setq evil-shift-width 2))))
 
 (provide 'user)
 ;;; user.el ends here

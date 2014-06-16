@@ -22,5 +22,6 @@
 (depends-on "starter-kit")
 (depends-on "surround")
 (depends-on "virtualenvwrapper")
+(depends-on "vline")
 (depends-on "yasnippet")
 (depends-on "zenburn-theme")
