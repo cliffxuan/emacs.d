@@ -12,6 +12,7 @@
 (depends-on "evil-leader")
 (depends-on "evil-nerd-commenter")
 (depends-on "evil-paredit")
+(depends-on "evil-surround")
 (depends-on "fill-column-indicator")
 (depends-on "flycheck")
 (depends-on "jedi")
