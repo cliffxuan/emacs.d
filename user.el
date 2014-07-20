@@ -60,12 +60,13 @@
      ,@COMMANDS))
 
 (evil-leader/set-key
-  "c" (bind
+  "t" (bind
         (evil-window-split)
         (windmove-down)
         (eshell))
   "e" 'switch-to-buffer
-  "f" 'find-file
+  "f" (bind
+         (dired "."))
   "k" 'kill-buffer
   "l" 'flycheck-list-errors
   "o" 'delete-other-windows
@@ -173,10 +174,21 @@
 (make-directory "~/.emacs.d/autosaves/" t)
 
 ;; disable automatic line break in html mode
-(add-hook 'html-mode-hook 'turn-off-auto-fill)
-(add-hook 'html-model-hook
-          (function (lambda ()
-                      (setq evil-shift-width 2))))
+;; (add-hook 'html-mode-hook 'turn-off-auto-fill)
+;; (add-hook 'html-model-hook
+;;           (function (lambda ()
+;;                       (setq evil-shift-width 2))))
+
+(eval-after-load 'html-mode
+  '(progn
+     (turn-off-auto-fill)
+     (setq evil-shift-width 2)
+     (setq tab-width 2)))
+
+;; aset exec-path
+(setenv "PATH"
+   (concat "/usr/local/bin" ";"
+     (getenv "PATH")))
 
 (provide 'user)
 ;;; user.el ends here
