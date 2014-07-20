@@ -1,5 +1,6 @@
 # Compiled
 *.elc
+*.notes
 .cask/
 .python-environments/
 backups/
@@ -10,4 +11,3 @@ auto-save-list
 autosaves/
 ac-comphist.dat
 .smex-items
-
