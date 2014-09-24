@@ -69,6 +69,7 @@
          (dired "."))
   "k" 'kill-buffer
   "l" 'flycheck-list-errors
+  "m" 'magit-status
   "o" 'delete-other-windows
   "h" 'delete-window  ;; hide window
   "s" 'evil-window-split
