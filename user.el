@@ -191,5 +191,12 @@
    (concat "/usr/local/bin" ";"
      (getenv "PATH")))
 
+(custom-set-variables
+ '(ls-lisp-verbosity nil))
+
+(require 'dired-details)
+(dired-details-install)
+(setq dired-details-hidden-string "")
+
 (provide 'user)
 ;;; user.el ends here
