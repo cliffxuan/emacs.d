@@ -6,6 +6,7 @@
 (depends-on "auto-complete")
 (depends-on "cask")
 (depends-on "color-theme-wombat")
+(depends-on "dired-details")
 (depends-on "ein")
 (depends-on "ensime")
 (depends-on "ethan-wspace")
