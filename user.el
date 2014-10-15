@@ -110,6 +110,8 @@
 (setq inhibit-startup-screen t)
 
 
+;; give the underscore the word syntax-class in all C-like buffers.
+(modify-syntax-entry ?_ "w")
 ;; Show keystrokes
 ;;(setq echo-keystrokes 0.02)
 
@@ -148,7 +150,6 @@
 ;; make it happy
 (setq require-final-newline nil)
 (setq mode-require-final-newline nil)
-
 
 ;; Indicates the 79th column for python
 (require 'fill-column-indicator)
@@ -214,6 +215,14 @@
 (require 'dired-details)
 (dired-details-install)
 (setq dired-details-hidden-string "")
+
+(add-hook 'term-exec-hook
+  (function
+   (lambda ()
+     (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))))
+
+(add-hook 'term-mode-hook (lambda()
+    (setq yas-dont-activate t)))
 
 (provide 'user)
 ;;; user.el ends here

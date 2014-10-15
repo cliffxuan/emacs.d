@@ -3,6 +3,7 @@
 (source melpa)
 (source org)
 
+(depends-on "ack")
 (depends-on "auto-complete")
 (depends-on "cask")
 (depends-on "color-theme-wombat")
