@@ -76,6 +76,48 @@
      (interactive)
      ,@COMMANDS))
 
+(defun run-current-file ()
+  "Execute the current file.
+For example, if the current buffer is the file xx.py,
+then it'll call “python xx.py” in a shell.
+The file can be php, perl, python, ruby, javascript, bash, ocaml, vb, elisp.
+File suffix is used to determine what program to run.
+
+If the file is modified, ask if you want to save first.
+
+If the file is Emacs LISP, run the byte compiled version if exist."
+  (interactive)
+  (let* (
+         (suffix-map
+          `(
+            ("php" . "php")
+            ("pl" . "perl")
+            ("py" . "python")
+            ("rb" . "ruby")
+            ("js" . "node")             ; node.js
+            ("sh" . "bash")
+            )
+          )
+         (f-name (buffer-file-name))
+         (f-suffix (file-name-extension f-name))
+         (prog-name (cdr (assoc f-suffix suffix-map)))
+         (cmd-str (concat prog-name " \""   f-name "\""))
+         )
+
+    (when (buffer-modified-p)
+      (when (y-or-n-p "Buffer modified.  Do you want to save first? ")
+          (save-buffer) ) )
+
+    (if (string-equal f-suffix "el") ; special case for emacs lisp
+        (load (file-name-sans-extension f-name))
+      (if prog-name
+          (progn
+            (message "Running…")
+            (shell-command cmd-str "*run-current-file output*" )
+            )
+        (message "No recognized program file suffix for this file.")
+        ) ) ))
+
 (evil-leader/set-key
   "t" (bind
         (evil-window-split)
@@ -89,13 +131,13 @@
   "m" 'magit-status
   "o" 'delete-other-windows
   "h" 'delete-window  ;; hide window
+  "r" 'run-current-file
   "s" 'evil-window-split
   "v" 'evil-window-vsplit
   "w" 'delete-trailing-whitespace
   "x" (bind (execute-extended-command nil)))
 (evil-leader/set-key-for-mode 'python-mode "b" 'set-ipdb)
 (evil-leader/set-key-for-mode 'python-mode "d" 'remove-ipdb)
-(evil-leader/set-key-for-mode 'python-mode "r" 'run-python)
 
 
 ;; Swap ";" and ":" in evil mode
