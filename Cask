@@ -19,6 +19,7 @@
 (depends-on "exec-path-from-shell")
 (depends-on "fill-column-indicator")
 (depends-on "flycheck")
+(depends-on "helm")
 (depends-on "jedi")
 (depends-on "magit")
 (depends-on "monokai-theme")
