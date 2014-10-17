@@ -246,11 +246,6 @@ If the file is Emacs LISP, run the byte compiled version if exist."
      (setq evil-shift-width 2)
      (setq tab-width 2)))
 
-;; aset exec-path
-(setenv "PATH"
-   (concat "/usr/local/bin" ";"
-     (getenv "PATH")))
-
 (custom-set-variables
  '(ls-lisp-verbosity nil))
 
@@ -265,6 +260,11 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 
 (add-hook 'term-mode-hook (lambda()
     (setq yas-dont-activate t)))
+
+;; zsh is problematic for managing path
+(setq shell-file-name "/bin/bash")
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
 
 (provide 'user)
 ;;; user.el ends here

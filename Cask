@@ -16,6 +16,7 @@
 (depends-on "evil-nerd-commenter")
 (depends-on "evil-paredit")
 (depends-on "evil-surround")
+(depends-on "exec-path-from-shell")
 (depends-on "fill-column-indicator")
 (depends-on "flycheck")
 (depends-on "jedi")
