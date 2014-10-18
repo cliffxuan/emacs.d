@@ -266,5 +266,8 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
+;; do not prettify lambdas
+(remove-hook 'prog-mode-hook 'esk-pretty-lambdas)
+
 (provide 'user)
 ;;; user.el ends here
