@@ -259,7 +259,6 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (custom-set-variables
  '(ls-lisp-verbosity nil))
 
-
 (add-hook 'term-exec-hook
   (function
    (lambda ()
@@ -275,6 +274,8 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 
 ;; do not prettify lambdas
 (remove-hook 'prog-mode-hook 'esk-pretty-lambdas)
+;; Use Emacs terminfo, not system terminfo
+(setq system-uses-terminfo nil)
 
 (provide 'user)
 ;;; user.el ends here

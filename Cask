@@ -20,6 +20,7 @@
 (depends-on "flycheck")
 (depends-on "helm")
 (depends-on "helm-projectile")
+(depends-on "git-gutter+")
 (depends-on "jedi")
 (depends-on "magit")
 (depends-on "monokai-theme")
