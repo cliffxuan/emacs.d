@@ -7,6 +7,16 @@
 (require 'cask "~/.cask/cask.el")
 (cask-initialize)
 
+;; Disable graphical dialog as they do not work
+(defadvice yes-or-no-p (around prevent-dialog activate)
+  "Prevent 'yes-or-no-p' from activating a dialog."
+  (let ((use-dialog-box nil))
+    ad-do-it))
+(defadvice y-or-n-p (around prevent-dialog-yorn activate)
+  "Prevent 'y-or-n-p' from activating a dialog."
+  (let ((use-dialog-box nil))
+    ad-do-it))
+
 ;; Keeps ~Cask~ file in sync with the packages
 ;; that you install/uninstall via ~M-x list-packages~
 ;; https://github.com/rdallasgray/pallet
@@ -22,6 +32,9 @@
 
 ;; Hightlight line
 (global-hl-line-mode 1)
+
+;; Helm
+(global-set-key (kbd "M-x") 'helm-M-x)
 
 ;; Evil mode
 (require 'evil)
@@ -123,25 +136,23 @@ If the file is Emacs LISP, run the byte compiled version if exist."
         ) ) ))
 
 (evil-leader/set-key
-  "t" (bind
-        (evil-window-split)
-        (windmove-down)
-        (eshell))
-  "e" 'switch-to-buffer
-  "f" (bind
-         (dired "."))
+  "e" 'helm-mini
+  "f" 'helm-find-files
+  "g" 'helm-do-grep
+  "h" 'delete-window  ;; hide window
   "k" 'kill-buffer
   "l" 'flycheck-list-errors
   "m" 'magit-status
   "o" 'delete-other-windows
-  "h" 'delete-window  ;; hide window
+  "p" 'helm-projectile
   "r" 'run-current-file
   "s" 'evil-window-split
   "v" 'evil-window-vsplit
   "w" 'delete-trailing-whitespace
   "x" (bind (execute-extended-command nil)))
-(evil-leader/set-key-for-mode 'python-mode "b" 'set-ipdb)
-(evil-leader/set-key-for-mode 'python-mode "d" 'remove-ipdb)
+;; (set-key-for-mode 'python-mode (kbd "<SPC> b") 'set-ipdb)
+(evil-define-key 'normal python-mode-map (kbd "<SPC> b") 'set-ipdb)
+(evil-define-key 'normal python-mode-map (kbd "<SPC> d") 'remove-ipdb)
 
 
 ;; Swap ";" and ":" in evil mode
@@ -166,11 +177,6 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 
 (require 'powerline)
 (powerline-center-evil-theme)
-
-;; Git
-(require 'magit)
-(eval-after-load 'magit
-  (progn '(global-set-key (kbd "C-x g") 'magit-status)))
 
 ;; Yasnippet
 (require 'yasnippet)
@@ -253,9 +259,6 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (custom-set-variables
  '(ls-lisp-verbosity nil))
 
-(require 'dired-details)
-(dired-details-install)
-(setq dired-details-hidden-string "")
 
 (add-hook 'term-exec-hook
   (function
