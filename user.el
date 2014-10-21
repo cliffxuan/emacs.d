@@ -135,6 +135,16 @@ If the file is Emacs LISP, run the byte compiled version if exist."
         (message "No recognized program file suffix for this file.")
         ) ) ))
 
+(defun visit-term-buffer ()
+  "Create or visit a terminal buffer."
+  (interactive)
+  (if (not (get-buffer "*ansi-term*"))
+      (progn
+        (split-window-sensibly (selected-window))
+        (other-window 1)
+        (ansi-term (getenv "SHELL")))
+    (switch-to-buffer-other-window "*ansi-term*")))
+
 (evil-leader/set-key
   "e" 'helm-mini
   "f" 'helm-find-files
@@ -147,6 +157,7 @@ If the file is Emacs LISP, run the byte compiled version if exist."
   "p" 'helm-projectile
   "r" 'run-current-file
   "s" 'evil-window-split
+  "t" 'visit-term-buffer
   "v" 'evil-window-vsplit
   "w" 'delete-trailing-whitespace
   "x" (bind (execute-extended-command nil)))
