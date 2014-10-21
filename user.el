@@ -172,7 +172,9 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 
 ;; Themes
 (load-theme 'monokai t)
-(setq evil-default-cursor (quote (t "Firebrick")))
+;; Cursor colour
+(set-face-background 'cursor "Firebrick")
+
 
 ;; Don't show startup screen
 (setq inhibit-startup-screen t)
