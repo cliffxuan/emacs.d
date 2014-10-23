@@ -95,6 +95,45 @@
      (interactive)
      ,@COMMANDS))
 
+(defun current-callable ()
+  "Find the current function or class name."
+  (save-excursion
+    (re-search-backward
+     "^ \\{0,4\\}\\(class\\|def\\)[ \t]+\\([a-zA-Z0-9_]+\\)" nil t)
+    (buffer-substring-no-properties (match-beginning 2) (match-end 2))))
+
+(defun pytest-current-module ()
+  "Run pytest on current file."
+  (interactive)
+  (shell-command (concat "py.test " (buffer-file-name)))
+)
+
+(defun pytest-current-func ()
+  "Run pytest on current function or class."
+  (interactive)
+  (shell-command (concat "py.test " (buffer-file-name) " -k " (current-callable)))
+)
+
+(defun eshell-here (command)
+  "Opens up a new shell in the directory associated with the current buffer's file and run the COMMAND."
+  (interactive)
+  (let* ((parent (file-name-directory (buffer-file-name)))
+         (name   (car
+                  (last
+                   (split-string parent "/" t)))))
+    (split-window-vertically)
+    (other-window 1)
+    (eshell "new")
+
+    (insert (concat command))
+    (eshell-send-input)))
+
+(defun pytest-current-func-eshell ()
+  "Run pytest on current function or class in eshell."
+  (interactive)
+  (eshell-here (concat "py.test " (buffer-file-name) " -s -k " (current-callable)))
+)
+
 (defun run-current-file ()
   "Execute the current file.
 For example, if the current buffer is the file xx.py,
@@ -164,8 +203,12 @@ If the file is Emacs LISP, run the byte compiled version if exist."
   "w" 'delete-trailing-whitespace
   "x" (bind (execute-extended-command nil)))
 ;; (set-key-for-mode 'python-mode (kbd "<SPC> b") 'set-ipdb)
+(evil-define-key 'normal python-mode-map (kbd "<SPC> a") 'venv-workon)
 (evil-define-key 'normal python-mode-map (kbd "<SPC> b") 'set-ipdb)
 (evil-define-key 'normal python-mode-map (kbd "<SPC> d") 'remove-ipdb)
+(evil-define-key 'normal python-mode-map (kbd "<SPC> m") 'pytest-current-module)
+(evil-define-key 'normal python-mode-map (kbd "<SPC> f") 'pytest-current-func)
+(evil-define-key 'normal python-mode-map (kbd "<SPC> if") 'pytest-current-func-eshell)
 
 
 ;; Swap ";" and ":" in evil mode
@@ -293,6 +336,11 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (remove-hook 'prog-mode-hook 'esk-pretty-lambdas)
 ;; Use Emacs terminfo, not system terminfo
 (setq system-uses-terminfo nil)
+
+
+(defun eshell/x ()
+  "Delete window."
+  (delete-window))
 
 (provide 'user)
 ;;; user.el ends here
