@@ -7,6 +7,11 @@
 (require 'cask "~/.cask/cask.el")
 (cask-initialize)
 
+;; Keeps ~Cask~ file in sync with the packages
+;; that you install/uninstall via ~M-x list-packages~
+;; https://github.com/rdallasgray/pallet
+(require 'pallet)
+
 ;; Disable graphical dialog as they do not work
 (defadvice yes-or-no-p (around prevent-dialog activate)
   "Prevent 'yes-or-no-p' from activating a dialog."
@@ -16,11 +21,6 @@
   "Prevent 'y-or-n-p' from activating a dialog."
   (let ((use-dialog-box nil))
     ad-do-it))
-
-;; Keeps ~Cask~ file in sync with the packages
-;; that you install/uninstall via ~M-x list-packages~
-;; https://github.com/rdallasgray/pallet
-(require 'pallet)
 
 ;; Show line number
 (require 'linum)
@@ -337,6 +337,8 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 ;; Use Emacs terminfo, not system terminfo
 (setq system-uses-terminfo nil)
 
+;; gitgutter+
+(global-git-gutter+-mode t)
 
 (defun eshell/x ()
   "Delete window."
