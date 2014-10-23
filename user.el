@@ -271,11 +271,14 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 
 ;; jedi completion
 (require 'jedi)
-(add-hook 'python-mode-hook 'jedi:setup)
+(add-hook 'python-mode-hook 'jedi:ac-setup)
 (setq jedi:complete-on-dot t)
 
 (require 'virtualenvwrapper)
 (venv-initialize-eshell)
+(add-hook 'venv-postactivate-hook
+          (lambda) (jedi:stop-server))
+
 
 ;; Ipython integration with fgallina/python.el
 (require 'python)
