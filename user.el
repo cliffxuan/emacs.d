@@ -62,6 +62,7 @@
         (magit-branch-manager-mode . emacs)
         (rdictcc-buffer-mode . emacs)
         (dired-mode . emacs)
+        (eshell-mode . emacs)
         (wdired-mode . normal)))
 
 
