@@ -341,8 +341,8 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 ;; Use Emacs terminfo, not system terminfo
 (setq system-uses-terminfo nil)
 
-;; gitgutter+
-(global-git-gutter+-mode t)
+;; git-gutter
+(global-git-gutter-mode +1)
 
 (defun eshell/x ()
   "Delete window."
