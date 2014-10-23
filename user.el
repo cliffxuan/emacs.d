@@ -100,19 +100,19 @@
   "Find the current function or class name."
   (save-excursion
     (re-search-backward
-     "^ \\{0,4\\}\\(class\\|def\\)[ \t]+\\([a-zA-Z0-9_]+\\)" nil t)
-    (buffer-substring-no-properties (match-beginning 2) (match-end 2))))
+     "^ \\{0,4\\}def[ \t]+\\(test[a-zA-Z0-9_]+\\)" nil t)
+    (buffer-substring-no-properties (match-beginning 1) (match-end 1))))
 
 (defun pytest-current-module ()
   "Run pytest on current file."
   (interactive)
-  (shell-command (concat "py.test " (buffer-file-name)))
+  (shell-command (concat "py.test -s " (buffer-file-name)))
 )
 
 (defun pytest-current-func ()
   "Run pytest on current function or class."
   (interactive)
-  (shell-command (concat "py.test " (buffer-file-name) " -k " (current-callable)))
+  (shell-command (concat "py.test " (buffer-file-name) " -s -k " (current-callable)))
 )
 
 (defun eshell-here (command)
