@@ -223,10 +223,15 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (evil-define-key 'normal python-mode-map (kbd "<SPC> f") 'pytest-current-func)
 (evil-define-key 'normal python-mode-map (kbd "<SPC> if") 'pytest-current-func-term)
 
-
 ;; Swap ";" and ":" in evil mode
 (define-key evil-motion-state-map ";" 'evil-ex)
 (define-key evil-motion-state-map ":" 'evil-repeat-find-char)
+(define-key evil-normal-state-map (kbd "C-n") (lambda ()
+                                                (interactive)
+                                                (evil-next-buffer)))
+(define-key evil-normal-state-map (kbd "C-p") (lambda ()
+                                                (interactive)
+                                                (evil-prev-buffer)))
 
 ;; Themes
 (load-theme 'monokai t)
