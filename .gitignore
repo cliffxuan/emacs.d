@@ -3,6 +3,7 @@
 *.notes
 .cask/
 .python-environments/
+url/
 backups/
 places
 eshell
