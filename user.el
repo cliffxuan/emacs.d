@@ -208,6 +208,7 @@ If the file is Emacs LISP, run the byte compiled version if exist."
   "m" 'magit-status
   "o" 'delete-other-windows
   "p" 'helm-projectile
+  "q" 'helm-occur
   "r" 'run-current-file
   "s" 'evil-window-split
   "t" 'visit-term-buffer
