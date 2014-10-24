@@ -196,6 +196,7 @@ If the file is Emacs LISP, run the byte compiled version if exist."
     (switch-to-buffer-other-window "*ansi-term*")))
 
 (evil-leader/set-key
+  "," 'evilnc-comment-operator
   "b" 'helm-buffers-list
   ; "c"  evil-nerd-commenter
   "e" 'helm-mini
@@ -215,7 +216,7 @@ If the file is Emacs LISP, run the byte compiled version if exist."
   "v" 'evil-window-vsplit
   "w" 'delete-trailing-whitespace
   "x" (bind (execute-extended-command nil)))
-;; (set-key-for-mode 'python-mode (kbd "<SPC> b") 'set-ipdb)
+
 (evil-define-key 'normal python-mode-map (kbd "<SPC> a") 'venv-workon)
 (evil-define-key 'normal python-mode-map (kbd "<SPC> b") 'set-ipdb)
 (evil-define-key 'normal python-mode-map (kbd "<SPC> d") 'remove-ipdb)
