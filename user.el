@@ -115,6 +115,20 @@
   (shell-command (concat "py.test " (buffer-file-name) " -s -k " (current-callable)))
 )
 
+(defun pytest-executable ()
+  "Get the pytest executable taking into account of virtualenv."
+    (let ((venv (getenv "VIRTUAL_ENV")))
+      (if venv
+          (concat venv "bin/py.test")
+        "py.test")))
+
+(defun pytest-current-func-term ()
+  "Run current function in term."
+  (interactive)
+  (let ((command (concat (pytest-executable) " " (buffer-file-name) " -s -k " (current-callable) "\n")))
+    (term-send-string (visit-term-buffer) command)))
+
+
 (defun eshell-here (command)
   "Opens up a new shell in the directory associated with the current buffer's file and run the COMMAND."
   (interactive)
@@ -128,12 +142,6 @@
 
     (insert (concat command))
     (eshell-send-input)))
-
-(defun pytest-current-func-eshell ()
-  "Run pytest on current function or class in eshell."
-  (interactive)
-  (eshell-here (concat "py.test " (buffer-file-name) " -s -k " (current-callable)))
-)
 
 (defun run-current-file ()
   "Execute the current file.
@@ -188,10 +196,13 @@ If the file is Emacs LISP, run the byte compiled version if exist."
     (switch-to-buffer-other-window "*ansi-term*")))
 
 (evil-leader/set-key
+  "b" 'helm-buffers-list
+  ; "c"  evil-nerd-commenter
   "e" 'helm-mini
   "f" 'helm-find-files
   "g" 'helm-do-grep
   "h" 'delete-window  ;; hide window
+  "i" 'shell-command
   "k" 'kill-buffer
   "l" 'flycheck-list-errors
   "m" 'magit-status
@@ -209,7 +220,7 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (evil-define-key 'normal python-mode-map (kbd "<SPC> d") 'remove-ipdb)
 (evil-define-key 'normal python-mode-map (kbd "<SPC> m") 'pytest-current-module)
 (evil-define-key 'normal python-mode-map (kbd "<SPC> f") 'pytest-current-func)
-(evil-define-key 'normal python-mode-map (kbd "<SPC> if") 'pytest-current-func-eshell)
+(evil-define-key 'normal python-mode-map (kbd "<SPC> if") 'pytest-current-func-term)
 
 
 ;; Swap ";" and ":" in evil mode
