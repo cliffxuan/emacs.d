@@ -3,6 +3,7 @@
 (source melpa)
 (source org)
 
+(depends-on "ace-jump-mode")
 (depends-on "ack")
 (depends-on "auto-complete")
 (depends-on "cask")

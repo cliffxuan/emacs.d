@@ -208,6 +208,7 @@ If the file is Emacs LISP, run the byte compiled version if exist."
   "g" 'helm-do-grep
   "h" 'delete-window  ;; hide window
   "i" 'shell-command
+  "j" 'evil-ace-jump-char-mode
   "k" 'kill-buffer
   "l" 'flycheck-list-errors
   "m" 'magit-status
