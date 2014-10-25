@@ -96,7 +96,7 @@
      (interactive)
      ,@COMMANDS))
 
-(defun current-callable ()
+(defun current-function ()
   "Find the current function or class name."
   (save-excursion
     (re-search-backward
@@ -107,13 +107,14 @@
   "Run pytest on current file."
   (interactive)
   (shell-command (concat "py.test -s " (buffer-file-name)))
-)
+  )
 
 (defun pytest-current-func ()
   "Run pytest on current function or class."
   (interactive)
-  (shell-command (concat "py.test " (buffer-file-name) " -s -k " (current-callable)))
-)
+  (shell-command (concat "py.test " (buffer-file-name)
+                         " -s -k " (current-function)))
+  )
 
 (defun pytest-executable ()
   "Get the pytest executable taking into account of virtualenv."
@@ -127,7 +128,7 @@
   (interactive)
   (let ((command (concat (pytest-executable) " "
                          (buffer-file-name) " -s -k "
-                         (current-callable) "\n"))
+                         (current-function) "\n"))
         (term (visit-term-buffer)))
     (term-send-string term command)))
 
