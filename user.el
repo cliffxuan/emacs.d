@@ -125,8 +125,11 @@
 (defun pytest-current-func-term ()
   "Run current function in term."
   (interactive)
-  (let ((command (concat (pytest-executable) " " (buffer-file-name) " -s -k " (current-callable) "\n")))
-    (term-send-string (visit-term-buffer) command)))
+  (let ((command (concat (pytest-executable) " "
+                         (buffer-file-name) " -s -k "
+                         (current-callable) "\n"))
+        (term (visit-term-buffer)))
+    (term-send-string term command)))
 
 
 (defun eshell-here (command)
