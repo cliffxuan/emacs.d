@@ -241,7 +241,7 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (load-theme 'monokai t)
 
 ;; Cursor colour
-(set-face-background 'cursor "Firebrick")
+(set-cursor-color "Firebrick")
 (setq evil-default-cursor t)
 
 
