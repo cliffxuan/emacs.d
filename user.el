@@ -259,8 +259,8 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 ;; Enable Flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
-(require 'powerline)
-(powerline-center-evil-theme)
+;; nyan cat
+(nyan-mode)
 
 ;; Yasnippet
 (require 'yasnippet)
