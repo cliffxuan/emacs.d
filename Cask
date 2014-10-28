@@ -25,6 +25,7 @@
 (depends-on "helm-projectile")
 (depends-on "jedi")
 (depends-on "magit")
+(depends-on "markdown-mode")
 (depends-on "monokai-theme")
 (depends-on "nyan-mode")
 (depends-on "pallet")
