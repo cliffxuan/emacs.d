@@ -231,8 +231,8 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (evil-define-key 'normal python-mode-map (kbd "<SPC> m") 'pytest-current-module)
 (evil-define-key 'normal python-mode-map (kbd "<SPC> f") 'pytest-current-func)
 (evil-define-key 'normal python-mode-map (kbd "<SPC> p") 'pytest-current-func-term)
-(evil-define-key 'normal python-mode-map (kbd "<SPC> r") 'python-shell-send-region)
-(evil-define-key 'visual python-mode-map (kbd "<SPC> r") 'python-shell-send-region)
+(evil-define-key 'normal python-mode-map (kbd "<SPC> s") 'python-shell-send-region)
+(evil-define-key 'visual python-mode-map (kbd "<SPC> s") 'python-shell-send-region)
 
 ;; Swap ";" and ":" in evil mode
 (define-key evil-motion-state-map ";" 'evil-ex)
@@ -243,7 +243,7 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (define-key evil-normal-state-map (kbd "C-p") (lambda ()
                                                 (interactive)
                                                 (evil-prev-buffer)))
-(define-key  evil-normal-state-map (kbd "<SPC> s") 'python-shell-switch-to-shell)
+(define-key  evil-normal-state-map (kbd "<SPC> t") 'python-shell-switch-to-shell)
 
 ;; Themes
 (load-theme 'monokai t)
@@ -310,7 +310,9 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (add-hook 'python-mode-hook 'fci-mode)
 
 ;; Set ipython as the python shell
+(require 'python)
 (setq python-shell-interpreter "ipython")
+
 ;; jedi completion
 (require 'jedi)
 (add-hook 'python-mode-hook 'jedi:ac-setup)
