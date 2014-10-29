@@ -37,6 +37,7 @@
 (require 'helm-config)
 (helm-mode 1)
 (global-set-key (kbd "M-x") 'helm-M-x)
+(setq helm-mode-no-completion-in-region-in-modes '(inferior-python-mode))
 
 ;; Evil mode
 (require 'evil)
@@ -228,6 +229,8 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (evil-define-key 'normal python-mode-map (kbd "<SPC> m") 'pytest-current-module)
 (evil-define-key 'normal python-mode-map (kbd "<SPC> f") 'pytest-current-func)
 (evil-define-key 'normal python-mode-map (kbd "<SPC> p") 'pytest-current-func-term)
+(evil-define-key 'normal python-mode-map (kbd "<SPC> r") 'python-shell-send-region)
+(evil-define-key 'visual python-mode-map (kbd "<SPC> r") 'python-shell-send-region)
 
 ;; Swap ";" and ":" in evil mode
 (define-key evil-motion-state-map ";" 'evil-ex)
@@ -238,6 +241,7 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (define-key evil-normal-state-map (kbd "C-p") (lambda ()
                                                 (interactive)
                                                 (evil-prev-buffer)))
+(define-key  evil-normal-state-map (kbd "<SPC> s") 'python-shell-switch-to-shell)
 
 ;; Themes
 (load-theme 'monokai t)
@@ -300,6 +304,8 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (setq-default fci-rule-column 79)
 (add-hook 'python-mode-hook 'fci-mode)
 
+;; Set ipython as the python shell
+(setq python-shell-interpreter "ipython")
 ;; jedi completion
 (require 'jedi)
 (add-hook 'python-mode-hook 'jedi:ac-setup)
@@ -309,21 +315,6 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (venv-initialize-eshell)
 (add-hook 'venv-postactivate-hook
           (lambda) (jedi:stop-server))
-
-
-;; Ipython integration with fgallina/python.el
-(require 'python)
-(defun setup-ipython ()
-  "Setup ipython integration with `python-mode'."
-  (interactive)
-
-  (setq
-   python-shell-interpreter "ipython"
-   python-shell-interpreter-args ""
-   python-shell-prompt-regexp "In \[[0-9]+\]: "
-   python-shell-prompt-output-regexp "Out\[[0-9]+\]: "
-   python-shell-completion-setup-code ""
-   python-shell-completion-string-code "';'.join(get_ipython().complete('''%s''')[1])\n"))
 
 (evilnc-default-hotkeys)
 
