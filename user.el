@@ -34,10 +34,12 @@
 (global-hl-line-mode 1)
 
 ;; Helm
+(require 'helm-mode)
 (require 'helm-config)
-(helm-mode 1)
 (global-set-key (kbd "M-x") 'helm-M-x)
-(setq helm-mode-no-completion-in-region-in-modes '(inferior-python-mode))
+(setq helm-mode-no-completion-in-region-in-modes '(inferior-python-mode)
+      helm-move-to-line-cycle-in-source          t)
+(helm-mode 1)
 
 ;; Evil mode
 (require 'evil)
