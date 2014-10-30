@@ -203,6 +203,7 @@ If the file is Emacs LISP, run the byte compiled version if exist."
     (switch-to-buffer-other-window "*ansi-term*")))
 
 (evil-leader/set-key
+  "a" 'helm-semantic-or-imenu
   "," 'evilnc-comment-operator
   "b" 'helm-buffers-list
   ; "c"  evil-nerd-commenter
@@ -221,6 +222,7 @@ If the file is Emacs LISP, run the byte compiled version if exist."
   "r" 'run-current-file
   "s" 'evil-window-split
   "t" 'visit-term-buffer
+  "u" 'helm-resume
   "v" 'evil-window-vsplit
   "w" 'delete-trailing-whitespace
   "x" (bind (execute-extended-command nil)))
