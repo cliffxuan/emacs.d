@@ -233,8 +233,8 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (evil-define-key 'normal python-mode-map (kbd "<SPC> m") 'pytest-current-module)
 (evil-define-key 'normal python-mode-map (kbd "<SPC> f") 'pytest-current-func)
 (evil-define-key 'normal python-mode-map (kbd "<SPC> p") 'pytest-current-func-term)
-(evil-define-key 'normal python-mode-map (kbd "<SPC> s") 'python-shell-send-region)
-(evil-define-key 'visual python-mode-map (kbd "<SPC> s") 'python-shell-send-region)
+(evil-define-key 'normal python-mode-map (kbd "<SPC> r") 'python-shell-send-region)
+(evil-define-key 'visual python-mode-map (kbd "<SPC> r") 'python-shell-send-region)
 
 ;; Swap ";" and ":" in evil mode
 (define-key evil-motion-state-map ";" 'evil-ex)
@@ -297,7 +297,7 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (ac-config-default)
 
 ;; Allow hash to be entered
-(global-set-key (kbd "M-3") '(lambda () (interactive) (insert "#")))
+(global-set-key (kbd "M-3") '(lambda () (interactive) (insert "£")))
 
 ;; No unnecessary whitespaces
 (require 'ethan-wspace)
