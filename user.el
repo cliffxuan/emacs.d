@@ -232,6 +232,7 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (evil-define-key 'normal python-mode-map (kbd "<SPC> d") 'remove-ipdb)
 (evil-define-key 'normal python-mode-map (kbd "<SPC> m") 'pytest-current-module)
 (evil-define-key 'normal python-mode-map (kbd "<SPC> f") 'pytest-current-func)
+(evil-define-key 'normal python-mode-map (kbd "<SPC> g") 'jedi:goto-definition)
 (evil-define-key 'normal python-mode-map (kbd "<SPC> p") 'pytest-current-func-term)
 (evil-define-key 'normal python-mode-map (kbd "<SPC> r") 'python-shell-send-region)
 (evil-define-key 'visual python-mode-map (kbd "<SPC> r") 'python-shell-send-region)
