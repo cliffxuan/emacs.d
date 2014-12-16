@@ -1,0 +1,10 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: cdec
+# key: cde
+# binding: direct-keybinding
+# --
+# -*- coding: utf-8 -*-
+#
+# (C) Copyright Connected Digital Economy Catapult Limited 2014
+# All rights reserved
+#

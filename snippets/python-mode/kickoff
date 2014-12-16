@@ -1,0 +1,17 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: kickoff a python script 
+# key: ko
+# binding: direct-keybinding
+# --
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+"""
+
+
+def main():
+    pass
+
+
+if __name__ == '__main__':
+    main()
