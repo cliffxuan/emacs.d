@@ -1,0 +1,15 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: aprparse
+# key: ap
+# binding: direct-keybinding
+# --
+parser = argparse.ArgumentParser(
+    description='describe me')
+parser.add_argument(
+    '--foo', dest='foo', help='foo')
+parser.add_argument(
+    '--bar', dest='bar',
+    required=True, help='bar')
+parser.add_argument(
+    'eggs', nargs='+', help='one or multiple eggs')
+args = parser.parse_args()

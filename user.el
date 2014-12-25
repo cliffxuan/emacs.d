@@ -47,6 +47,8 @@
 (require 'evil)
 (evil-mode 1)
 
+(require 'evil-nerd-commenter)
+
 (mapc (lambda (element)
         (let ((mode (car element))
               (state (cdr element)))
@@ -230,6 +232,8 @@ If the file is Emacs LISP, run the byte compiled version if exist."
   "w" 'delete-trailing-whitespace
   "x" (bind (execute-extended-command nil)))
 
+(define-key evil-normal-state-map (kbd "Q") 'helm-find-files)
+
 (evil-define-key 'normal python-mode-map (kbd "<SPC> a") 'venv-workon)
 (evil-define-key 'normal python-mode-map (kbd "<SPC> b") 'set-ipdb)
 (evil-define-key 'normal python-mode-map (kbd "<SPC> d") 'remove-ipdb)
@@ -312,6 +316,17 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (setq require-final-newline nil)
 (setq mode-require-final-newline nil)
 
+;; TAB and [tab] no conflict
+(defun iy-tab-noconflict ()
+  "Tab <tab> no conflict."
+  (let ((command (key-binding [tab])))                 ; remember command
+    (local-unset-key [tab]) ; unset from (kbd "<tab>")
+    (local-set-key (kbd "TAB") command)))              ; re-bind to (kbd "TAB")
+(add-hook 'ruby-mode-hook 'iy-ac-tab-noconflict)
+(add-hook 'python-mode-hook 'iy-ac-tab-noconflict)
+(add-hook 'markdown-mode-hook 'iy-ac-tab-noconflict)
+(add-hook 'org-mode-hook 'iy-ac-tab-noconflict)
+
 ;; Indicates the 79th column for python
 (require 'fill-column-indicator)
 (setq-default fci-rule-column 79)
@@ -331,8 +346,6 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (add-hook 'venv-postactivate-hook
           (lambda) (jedi:stop-server))
 
-(evilnc-default-hotkeys)
-
 (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
@@ -347,7 +360,7 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 
 ;; disable automatic line break in html mode
 ;; (add-hook 'html-mode-hook 'turn-off-auto-fill)
-;; (add-hook 'html-model-hook
+;; (add-hook 'html-mode-hook
 ;;           (function (lambda ()
 ;;                       (setq evil-shift-width 2))))
 
