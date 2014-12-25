@@ -209,9 +209,9 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (evil-leader/set-key
   "a" 'helm-semantic-or-imenu
   "," 'evilnc-comment-operator
-  "b" 'helm-buffers-list
-  ; "c"  evil-nerd-commenter
-  "e" 'helm-mini
+  "b" 'helm-mini
+  ;; "c"  evil-nerd-commenter
+  "e" (kbd "M-:")
   "f" 'helm-find-files
   "g" 'helm-do-grep
   "h" 'delete-window  ;; hide window
