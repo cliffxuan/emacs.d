@@ -47,6 +47,7 @@
 (require 'evil)
 (evil-mode 1)
 
+;; Nerd commenter
 (require 'evil-nerd-commenter)
 
 (mapc (lambda (element)
@@ -109,12 +110,6 @@
     (re-search-backward
      "^ \\{0,4\\}def[ \t]+\\(test[a-zA-Z0-9_]+\\)" nil t)
     (buffer-substring-no-properties (match-beginning 1) (match-end 1))))
-
-(defun pytest-current-module ()
-  "Run pytest on current file."
-  (interactive)
-  (shell-command (concat "py.test -s " (buffer-file-name)))
-  )
 
 (defun pytest-current-func ()
   "Run pytest on current function or class."
@@ -206,12 +201,20 @@ If the file is Emacs LISP, run the byte compiled version if exist."
         (ansi-term (getenv "SHELL")))
     (switch-to-buffer-other-window "*ansi-term*")))
 
+(defun shell-command-on-buffer (command background?)
+  "Run a shell COMMAND on current buffer in the BACKGROUND or not."
+  (interactive)
+  (shell-command (concat command " " (buffer-file-name) (if background? " &" "")))
+  )
+
 (evil-leader/set-key
-  "a" 'helm-semantic-or-imenu
   "," 'evilnc-comment-operator
+  "a" 'helm-semantic-or-imenu
   "b" 'helm-mini
-  ;; "c"  evil-nerd-commenter
-  "e" (kbd "M-:")
+  "c" 'revert-buffer
+  "d" (bind  ;; open in gvim
+       (start-process "gvim" "*gvim*" "gvim" (buffer-file-name)))
+  "e" 'eval-expression
   "f" 'helm-find-files
   "g" 'helm-do-grep
   "h" 'delete-window  ;; hide window
@@ -237,7 +240,7 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (evil-define-key 'normal python-mode-map (kbd "<SPC> a") 'venv-workon)
 (evil-define-key 'normal python-mode-map (kbd "<SPC> b") 'set-ipdb)
 (evil-define-key 'normal python-mode-map (kbd "<SPC> d") 'remove-ipdb)
-(evil-define-key 'normal python-mode-map (kbd "<SPC> m") 'pytest-current-module)
+(evil-define-key 'normal python-mode-map (kbd "<SPC> m") (bind (shell-command-on-buffer "py.test -s" nil)))
 (evil-define-key 'normal python-mode-map (kbd "<SPC> f") 'pytest-current-func)
 (evil-define-key 'normal python-mode-map (kbd "<SPC> g") 'jedi:goto-definition)
 (evil-define-key 'normal python-mode-map (kbd "<SPC> s") 'pytest-current-func-term)
