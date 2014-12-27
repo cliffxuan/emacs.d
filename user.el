@@ -210,11 +210,11 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (evil-leader/set-key
   "," 'evilnc-comment-operator
   "a" 'helm-semantic-or-imenu
-  "b" 'helm-mini
+  "b" 'eval-expression
   "c" 'revert-buffer
   "d" (bind  ;; open in gvim
        (start-process "gvim" "*gvim*" "gvim" (buffer-file-name)))
-  "e" 'eval-expression
+  "e" 'helm-mini
   "f" 'helm-find-files
   "g" 'helm-do-grep
   "h" 'delete-window  ;; hide window
@@ -233,7 +233,10 @@ If the file is Emacs LISP, run the byte compiled version if exist."
   "u" 'helm-resume
   "v" 'evil-window-vsplit
   "w" 'delete-trailing-whitespace
-  "x" (bind (execute-extended-command nil)))
+  "x" (bind (execute-extended-command nil))
+  ;; "y"
+  ;; "z"
+  )
 
 (define-key evil-normal-state-map (kbd "Q") 'helm-find-files)
 
