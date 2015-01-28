@@ -288,10 +288,10 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; nyan cat
-(require 'nyan-mode)
-(nyan-start-animation)
-(setq nyan-wavy-trail t)
-(nyan-mode 1)
+;; (require 'nyan-mode)
+;; (nyan-start-animation)
+;; (setq nyan-wavy-trail t)
+;; (nyan-mode 1)
 
 ;; Yasnippet
 (add-to-list 'load-path
