@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: pytest mark
+# key: mark
+# binding: direct-keybinding
+# --
+@pytest.mark.parametrize("input,expected", [
+    (,)
+])
