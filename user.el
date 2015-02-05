@@ -261,12 +261,37 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 ;; Swap ";" and ":" in evil mode
 (define-key evil-motion-state-map ";" 'evil-ex)
 (define-key evil-motion-state-map ":" 'evil-repeat-find-char)
-(define-key evil-normal-state-map (kbd "C-n") (lambda ()
-                                                (interactive)
-                                                (evil-next-buffer)))
-(define-key evil-normal-state-map (kbd "C-p") (lambda ()
-                                                (interactive)
-                                                (evil-prev-buffer)))
+
+(defun next-user-buffer ()
+  "Switch to the next user buffer."
+  (interactive)
+  (next-buffer)
+  (let ((i 0))
+    (while (< i 20)
+      (if (or
+           (string-equal "*" (substring (buffer-name) 0 1))
+           (string-equal major-mode "dired-mode")
+           )
+          (progn (next-buffer)
+                 (setq i (1+ i)))
+        (progn (setq i 100))))))
+
+(defun previous-user-buffer ()
+  "Switch to the previous user buffer."
+  (interactive)
+  (previous-buffer)
+  (let ((i 0))
+    (while (< i 20)
+      (if (or
+           (string-equal "*" (substring (buffer-name) 0 1))
+           (string-equal major-mode "dired-mode")
+           )
+          (progn (previous-buffer)
+                 (setq i (1+ i)))
+        (progn (setq i 100))))))
+
+(define-key evil-normal-state-map (kbd "C-n") 'next-user-buffer)
+(define-key evil-normal-state-map (kbd "C-p") 'previous-user-buffer)
 (define-key  evil-normal-state-map (kbd "<SPC> t") 'python-shell-switch-to-shell)
 
 ;; Themes
@@ -411,6 +436,10 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (defun eshell/x ()
   "Delete window."
   (delete-window))
+
+;; load emacs server if not started
+(load "server")
+(unless (server-running-p) (server-start))
 
 (provide 'user)
 ;;; user.el ends here
