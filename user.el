@@ -138,6 +138,7 @@
                          (buffer-file-name) " -s -k "
                          (current-function) "\n"))
         (term (visit-term-buffer)))
+    (term-send-raw-string "\C-u")
     (term-send-string term command)))
 
 
