@@ -68,7 +68,7 @@
         (shell-mode . insert)
         (git-commit-mode . insert)
         (git-rebase-mode . emacs)
-        (term-mode . emacs)
+        (term-mode . insert)
         (help-mode . emacs)
         (helm-grep-mode . emacs)
         (grep-mode . emacs)
@@ -245,6 +245,7 @@ If the file is Emacs LISP, run the byte compiled version if exist."
   )
 
 (define-key evil-normal-state-map (kbd "Q") 'helm-find-files)
+(define-key evil-normal-state-map (kbd "K") 'kill-this-buffer)
 
 (evil-define-key 'normal python-mode-map (kbd "<SPC> a") 'venv-workon)
 (evil-define-key 'normal python-mode-map (kbd "<SPC> b") 'set-ipdb)
