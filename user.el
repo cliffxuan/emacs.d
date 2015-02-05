@@ -222,7 +222,7 @@ If the file is Emacs LISP, run the byte compiled version if exist."
        (start-process "gvim" "*gvim*" "gvim" (buffer-file-name)))
   "e" 'helm-mini
   "f" 'helm-find-files
-  "g" 'helm-do-grep
+  "g" 'helm-projectile-ack
   "h" 'delete-window  ;; hide window
   "i" 'shell-command
   "j" 'evil-ace-jump-char-mode
