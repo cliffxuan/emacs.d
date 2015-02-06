@@ -292,10 +292,13 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 
 (define-key evil-normal-state-map (kbd "C-n") 'next-user-buffer)
 (define-key evil-normal-state-map (kbd "C-p") 'previous-user-buffer)
+(define-key evil-normal-state-map (kbd "<S-tab>") 'previous-user-buffer)
+(define-key evil-normal-state-map (kbd "<tab>") 'next-user-buffer)
 (define-key  evil-normal-state-map (kbd "<SPC> t") 'python-shell-switch-to-shell)
 
 ;; Themes
-(load-theme 'monokai t)
+;; (load-theme 'monokai t)
+(load-theme 'firecode t)
 
 ;; Cursor colour
 (set-cursor-color "Firebrick")
