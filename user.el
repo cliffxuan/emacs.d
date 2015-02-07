@@ -214,6 +214,11 @@ If the file is Emacs LISP, run the byte compiled version if exist."
   (shell-command (concat command " " (buffer-file-name) (if background? " &" "")))
   )
 
+(defun kill-other-buffers ()
+  "Kill all buffers except current one."
+  (interactive)
+  (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
+
 (evil-leader/set-key
   "," 'evilnc-comment-operator
   "a" 'helm-semantic-or-imenu
@@ -241,7 +246,7 @@ If the file is Emacs LISP, run the byte compiled version if exist."
   "v" 'evil-window-vsplit
   "w" 'delete-trailing-whitespace
   "x" (bind (execute-extended-command nil))
-  ;; "y"
+  "y" 'kill-other-buffers
   ;; "z"
   )
 
