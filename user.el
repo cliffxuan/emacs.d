@@ -44,14 +44,10 @@
 (require 'string-inflection)
 
 ;; Evil mode
+(defvar evil-want-C-u-scroll)
+(setq evil-want-C-u-scroll t)
 (require 'evil)
 (evil-mode 1)
-(define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
-(define-key evil-visual-state-map (kbd "C-u") 'evil-scroll-up)
-(define-key evil-insert-state-map (kbd "C-u")
-  (lambda ()
-    (interactive)
-    (evil-delete (point-at-bol) (point))))
 
 ;; Nerd commenter
 (require 'evil-nerd-commenter)
@@ -303,7 +299,9 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 
 ;; Themes
 ;; (load-theme 'monokai t)
-(load-theme 'firecode t)
+;; (load-theme 'zenburn t)
+(set-frame-parameter nil 'background-mode 'dark)
+(load-theme 'solarized t)
 
 ;; Cursor colour
 (set-cursor-color "Firebrick")
