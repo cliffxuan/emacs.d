@@ -299,9 +299,9 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 
 ;; Themes
 ;; (load-theme 'monokai t)
-;; (load-theme 'zenburn t)
-(set-frame-parameter nil 'background-mode 'dark)
-(load-theme 'solarized t)
+(load-theme 'zenburn t)
+;; (set-frame-parameter nil 'background-mode 'dark)
+;; (load-theme 'solarized t)
 
 ;; Cursor colour
 (set-cursor-color "Firebrick")
