@@ -447,5 +447,8 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (load "server")
 (unless (server-running-p) (server-start))
 
+;; follow symbolic link
+(setq vc-follow-symlinks t)
+
 (provide 'user)
 ;;; user.el ends here
