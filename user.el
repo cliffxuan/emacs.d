@@ -332,9 +332,9 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (require 'yasnippet)
 (yas-global-mode 1)
 
-;; Surround
-(require 'surround)
-(global-surround-mode 1)
+;; Evil Surround
+(require 'evil-surround)
+(global-evil-surround-mode 1)
 
 ;; Complete brackets, quotes, etc
 (electric-pair-mode 1)
