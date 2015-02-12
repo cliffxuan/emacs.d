@@ -450,5 +450,9 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 ;; follow symbolic link
 (setq vc-follow-symlinks t)
 
+;; winner mode
+(when (fboundp 'winner-mode)
+  (winner-mode 1))
+
 (provide 'user)
 ;;; user.el ends here
