@@ -332,6 +332,15 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (require 'yasnippet)
 (yas-global-mode 1)
 
+;; Auto complete
+(require 'auto-complete-config)
+(ac-config-default)
+;;; set the trigger key so that it can work together with yasnippet on tab key,
+;;; if the word exists in yasnippet, pressing tab will cause yasnippet to
+;;; activate, otherwise, auto-complete will
+(ac-set-trigger-key "TAB")
+(ac-set-trigger-key "<tab>")
+
 ;; Evil Surround
 (require 'evil-surround)
 (global-evil-surround-mode 1)
@@ -346,10 +355,6 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (add-hook 'lisp-mode-hook             #'enable-paredit-mode)
 (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
 (add-hook 'scheme-mode-hook           #'enable-paredit-mode)
-
-;; Auto complete
-(require 'auto-complete-config)
-(ac-config-default)
 
 ;; Allow hash to be entered
 (global-set-key (kbd "M-3") '(lambda () (interactive) (insert "£")))
