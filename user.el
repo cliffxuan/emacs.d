@@ -464,5 +464,11 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (defvar js-indent-level)
 (setq js-indent-level 2)
 
+
+;; hightlight whitespaces
+(require 'whitespace)
+(setq whitespace-style '(trailing tabs newline tab-mark newline-mark))
+(global-whitespace-mode 1)
+
 (provide 'user)
 ;;; user.el ends here
