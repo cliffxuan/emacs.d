@@ -470,5 +470,10 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (setq whitespace-style '(trailing tabs newline tab-mark newline-mark))
 (global-whitespace-mode 1)
 
+;; multi-term
+(require 'multi-term)
+(setq multi-term-program "/bin/zsh")
+
+
 (provide 'user)
 ;;; user.el ends here

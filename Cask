@@ -41,6 +41,7 @@
 (depends-on "magit")
 (depends-on "markdown-mode")
 (depends-on "monokai-theme")
+(depends-on "multi-term")
 (depends-on "nyan-mode")
 (depends-on "package-build")
 (depends-on "pallet")
