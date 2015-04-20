@@ -409,12 +409,17 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (make-directory "~/.emacs.d/autosaves/" t)
 
 ;; disable automatic line break in html mode
-;; (add-hook 'html-mode-hook 'turn-off-auto-fill)
-;; (add-hook 'html-mode-hook
-;;           (function (lambda ()
-;;                       (setq evil-shift-width 2))))
-
 (eval-after-load 'html-mode
+  '(progn
+     (turn-off-auto-fill)
+     (setq evil-shift-width 2)
+     (setq tab-width 2)))
+(eval-after-load 'css-mode
+  '(progn
+     (turn-off-auto-fill)
+     (setq evil-shift-width 2)
+     (setq tab-width 2)))
+(eval-after-load 'javascript-mode
   '(progn
      (turn-off-auto-fill)
      (setq evil-shift-width 2)
