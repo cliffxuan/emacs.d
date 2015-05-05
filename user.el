@@ -477,6 +477,10 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (require 'multi-term)
 (setq multi-term-program "/bin/zsh")
 
+(require 'evil-matchit)
+(global-evil-matchit-mode 1)
+
+(global-evil-visualstar-mode)
 
 (provide 'user)
 ;;; user.el ends here
