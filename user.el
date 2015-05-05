@@ -408,22 +408,25 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 ;; create the autosave dir if necessary, since emacs won't.
 (make-directory "~/.emacs.d/autosaves/" t)
 
-;; disable automatic line break in html mode
-(eval-after-load 'html-mode
-  '(progn
-     (turn-off-auto-fill)
-     (setq evil-shift-width 2)
-     (setq tab-width 2)))
-(eval-after-load 'css-mode
-  '(progn
-     (turn-off-auto-fill)
-     (setq evil-shift-width 2)
-     (setq tab-width 2)))
-(eval-after-load 'javascript-mode
-  '(progn
-     (turn-off-auto-fill)
-     (setq evil-shift-width 2)
-     (setq tab-width 2)))
+(defvar js-indent-level)
+(setq js-indent-level 2)
+
+(defvar css-indent-offset)
+(setq css-indent-offset 2)
+
+(defun add-to-multi-hooks (function hooks)
+  "Apply FUNCTION to  a list of HOOKS."
+  (mapc (lambda (hook)
+          (add-hook hook function))
+        hooks))
+
+(add-to-multi-hooks (function (lambda ()
+                      (turn-off-auto-fill)
+                      (setq evil-shift-width 2)
+                      (setq tab-width 2)))
+                    '(html-mode-hook
+                      css-mode-hook
+                      javascript-mode-hook))
 
 (custom-set-variables
  '(ls-lisp-verbosity nil))
@@ -463,11 +466,6 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 ;; winner mode
 (when (fboundp 'winner-mode)
   (winner-mode 1))
-
-
-;; js indent
-(defvar js-indent-level)
-(setq js-indent-level 2)
 
 
 ;; hightlight whitespaces
