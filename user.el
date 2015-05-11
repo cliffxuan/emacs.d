@@ -52,6 +52,10 @@
 ;; Nerd commenter
 (require 'evil-nerd-commenter)
 
+;; magit
+(require 'magit)
+(setq magit-auto-revert-mode nil)
+
 (mapc (lambda (element)
         (let ((mode (car element))
               (state (cdr element)))
