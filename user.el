@@ -426,7 +426,7 @@ If the file is Emacs LISP, run the byte compiled version if exist."
                       (setq tab-width 2)))
                     '(html-mode-hook
                       css-mode-hook
-                      javascript-mode-hook))
+                      js-mode-hook))
 
 (custom-set-variables
  '(ls-lisp-verbosity nil))
