@@ -23,6 +23,9 @@
     ad-do-it))
 ;; do not show toolbar
 (tool-bar-mode -1)
+;; do not show scrollbar
+(scroll-bar-mode -1)
+
 
 ;; Show line number
 (require 'linum)
