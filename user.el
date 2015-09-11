@@ -21,6 +21,8 @@
   "Prevent 'y-or-n-p' from activating a dialog."
   (let ((use-dialog-box nil))
     ad-do-it))
+;; do not show toolbar
+(tool-bar-mode -1)
 
 ;; Show line number
 (require 'linum)
