@@ -26,6 +26,9 @@
 ;; do not show scrollbar
 (scroll-bar-mode -1)
 
+;; prevent ad-handle-definition: `xxx' got redefined
+(setq tramp-ssh-controlmaster-options
+      "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
 
 ;; Show line number
 (require 'linum)
