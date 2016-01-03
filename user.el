@@ -444,11 +444,6 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (custom-set-variables
  '(ls-lisp-verbosity nil))
 
-(add-hook 'term-exec-hook
-  (function
-   (lambda ()
-     (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))))
-
 (add-hook 'term-mode-hook (lambda()
     (setq yas-dont-activate t)))
 
@@ -494,6 +489,10 @@ If the file is Emacs LISP, run the byte compiled version if exist."
 (global-evil-matchit-mode 1)
 
 (global-evil-visualstar-mode)
+
+;; unicode fonts
+(require 'unicode-fonts)
+(unicode-fonts-setup)
 
 (provide 'user)
 ;;; user.el ends here
